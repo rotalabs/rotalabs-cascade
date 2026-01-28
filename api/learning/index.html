@@ -1,0 +1,5978 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Domain-agnostic orchestration engine for multi-stage decision routing">
+      
+      
+      
+        <link rel="canonical" href="https://rotalabs.github.io/rotalabs-cascade/api/learning/">
+      
+      
+        <link rel="prev" href="../plugins/">
+      
+      
+      
+      <link rel="icon" href="../../assets/logo-icon-light.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
+    
+    
+      
+        <title>Learning - rotalabs-cascade</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#learning-module-apls" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="rotalabs-cascade" class="md-header__button md-logo" aria-label="rotalabs-cascade" data-md-component="logo">
+      
+  <img src="../../assets/logo-icon-light.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            rotalabs-cascade
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Learning
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/rotalabs/rotalabs-cascade" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rotalabs/rotalabs-cascade
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="rotalabs-cascade" class="md-nav__button md-logo" aria-label="rotalabs-cascade" data-md-component="logo">
+      
+  <img src="../../assets/logo-icon-light.png" alt="logo">
+
+    </a>
+    rotalabs-cascade
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/rotalabs/rotalabs-cascade" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rotalabs/rotalabs-cascade
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../event-context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Event + Context
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/basic-cascade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Basic Cascade
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/apls-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    APLS Learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Context
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../event/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Event
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plugins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Learning
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learning
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#patternextractor" class="md-nav__link">
+    <span class="md-ellipsis">
+      PatternExtractor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PatternExtractor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor" class="md-nav__link">
+    <span class="md-ellipsis">
+      PatternExtractor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.learn_from_failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      learn_from_failure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_migration_candidates" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_migration_candidates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_insights
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.clear_patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      clear_patterns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_patterns_by_stage" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_patterns_by_stage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_patterns_by_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_patterns_by_type
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.export_patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      export_patterns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.import_patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      import_patterns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stagefailurepattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      StageFailurePattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="StageFailurePattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.StageFailurePattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      StageFailurePattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.to_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_dict
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.from_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      from_dict
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rulegenerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      RuleGenerator
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RuleGenerator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      RuleGenerator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator.generate_from_pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_from_pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator.to_routing_rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_routing_rule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator.to_yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_yaml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator.generate_batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_batch
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generatedrule" class="md-nav__link">
+    <span class="md-ellipsis">
+      GeneratedRule
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GeneratedRule">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.GeneratedRule" class="md-nav__link">
+    <span class="md-ellipsis">
+      GeneratedRule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.GeneratedRule.to_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_dict
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.GeneratedRule.from_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      from_dict
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#costanalyzer" class="md-nav__link">
+    <span class="md-ellipsis">
+      CostAnalyzer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CostAnalyzer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer" class="md-nav__link">
+    <span class="md-ellipsis">
+      CostAnalyzer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer--calculate-roi-for-a-single-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculate ROI for a single pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.set_stage_cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_stage_cost
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.calculate_migration_roi" class="md-nav__link">
+    <span class="md-ellipsis">
+      calculate_migration_roi
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.analyze_all_candidates" class="md-nav__link">
+    <span class="md-ellipsis">
+      analyze_all_candidates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.get_total_potential_savings" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_total_potential_savings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.rank_by_roi" class="md-nav__link">
+    <span class="md-ellipsis">
+      rank_by_roi
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migrationroi" class="md-nav__link">
+    <span class="md-ellipsis">
+      MigrationROI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MigrationROI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.MigrationROI" class="md-nav__link">
+    <span class="md-ellipsis">
+      MigrationROI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.MigrationROI.__post_init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __post_init__
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposalmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      ProposalManager
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ProposalManager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager" class="md-nav__link">
+    <span class="md-ellipsis">
+      ProposalManager
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.create_proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      create_proposal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.get_pending_proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_pending_proposals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.approve" class="md-nav__link">
+    <span class="md-ellipsis">
+      approve
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.reject" class="md-nav__link">
+    <span class="md-ellipsis">
+      reject
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.start_testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      start_testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.record_test_results" class="md-nav__link">
+    <span class="md-ellipsis">
+      record_test_results
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.activate" class="md-nav__link">
+    <span class="md-ellipsis">
+      activate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.deprecate" class="md-nav__link">
+    <span class="md-ellipsis">
+      deprecate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.get_proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_proposal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.get_active_rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_active_rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.export_proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      export_proposals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.import_proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      import_proposals
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ruleproposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      RuleProposal
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RuleProposal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.RuleProposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      RuleProposal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.RuleProposal.to_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_dict
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.RuleProposal.from_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      from_dict
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#patternextractor" class="md-nav__link">
+    <span class="md-ellipsis">
+      PatternExtractor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PatternExtractor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor" class="md-nav__link">
+    <span class="md-ellipsis">
+      PatternExtractor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.learn_from_failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      learn_from_failure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_migration_candidates" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_migration_candidates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_insights
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.clear_patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      clear_patterns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_patterns_by_stage" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_patterns_by_stage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_patterns_by_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_patterns_by_type
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.export_patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      export_patterns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.import_patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      import_patterns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stagefailurepattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      StageFailurePattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="StageFailurePattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.StageFailurePattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      StageFailurePattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.to_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_dict
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.from_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      from_dict
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rulegenerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      RuleGenerator
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RuleGenerator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      RuleGenerator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator.generate_from_pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_from_pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator.to_routing_rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_routing_rule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator.to_yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_yaml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator.generate_batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_batch
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generatedrule" class="md-nav__link">
+    <span class="md-ellipsis">
+      GeneratedRule
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GeneratedRule">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.GeneratedRule" class="md-nav__link">
+    <span class="md-ellipsis">
+      GeneratedRule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.GeneratedRule.to_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_dict
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.rule_generator.GeneratedRule.from_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      from_dict
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#costanalyzer" class="md-nav__link">
+    <span class="md-ellipsis">
+      CostAnalyzer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CostAnalyzer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer" class="md-nav__link">
+    <span class="md-ellipsis">
+      CostAnalyzer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer--calculate-roi-for-a-single-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculate ROI for a single pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.set_stage_cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_stage_cost
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.calculate_migration_roi" class="md-nav__link">
+    <span class="md-ellipsis">
+      calculate_migration_roi
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.analyze_all_candidates" class="md-nav__link">
+    <span class="md-ellipsis">
+      analyze_all_candidates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.get_total_potential_savings" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_total_potential_savings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.rank_by_roi" class="md-nav__link">
+    <span class="md-ellipsis">
+      rank_by_roi
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migrationroi" class="md-nav__link">
+    <span class="md-ellipsis">
+      MigrationROI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MigrationROI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.MigrationROI" class="md-nav__link">
+    <span class="md-ellipsis">
+      MigrationROI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.cost_analyzer.MigrationROI.__post_init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __post_init__
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposalmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      ProposalManager
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ProposalManager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager" class="md-nav__link">
+    <span class="md-ellipsis">
+      ProposalManager
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.create_proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      create_proposal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.get_pending_proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_pending_proposals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.approve" class="md-nav__link">
+    <span class="md-ellipsis">
+      approve
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.reject" class="md-nav__link">
+    <span class="md-ellipsis">
+      reject
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.start_testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      start_testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.record_test_results" class="md-nav__link">
+    <span class="md-ellipsis">
+      record_test_results
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.activate" class="md-nav__link">
+    <span class="md-ellipsis">
+      activate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.deprecate" class="md-nav__link">
+    <span class="md-ellipsis">
+      deprecate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.get_proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_proposal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.get_active_rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_active_rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.export_proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      export_proposals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.ProposalManager.import_proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      import_proposals
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ruleproposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      RuleProposal
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RuleProposal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.RuleProposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      RuleProposal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.RuleProposal.to_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_dict
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotalabs_cascade.learning.proposal.RuleProposal.from_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      from_dict
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="learning-module-apls">Learning Module (APLS)<a class="headerlink" href="#learning-module-apls" title="Permanent link">&para;</a></h1>
+<p>The learning module implements the Automatic Pattern Learning System (APLS) for cascade optimization. It extracts patterns from stage executions, generates routing rules, analyzes migration costs, and manages the rule proposal workflow.</p>
+<h2 id="patternextractor">PatternExtractor<a class="headerlink" href="#patternextractor" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<a id="rotalabs_cascade.learning.pattern_extractor.PatternExtractor"></a>
+    <div class="doc doc-contents first">
+
+
+        <p>Extracts patterns from cascade stage failures for optimization.</p>
+<p>The PatternExtractor analyzes stage results to identify recurring
+patterns that could potentially be moved to cheaper stages. For example,
+if an AI stage consistently catches a specific type of input based on
+certain feature combinations, that pattern could be encoded as a rule.</p>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>extractor = PatternExtractor()
+pattern = extractor.learn_from_failure(context, "ai_analysis", result)
+if pattern:
+...     print(f"Learned pattern: {pattern.id}")
+candidates = extractor.get_migration_candidates(min_confidence=0.9)
+insights = extractor.get_insights()</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.pattern_extractor.PatternExtractor.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PatternConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.__init__" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize the pattern extractor.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>config</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="rotalabs_cascade.learning.pattern_extractor.PatternConfig">PatternConfig</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional configuration for pattern extraction.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.pattern_extractor.PatternExtractor.learn_from_failure" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">learn_from_failure</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">ExecutionContext</span><span class="p">,</span> <span class="n">stage</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="n">StageResult</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">StageFailurePattern</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.learn_from_failure" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Learn patterns from a stage failure or detection.</p>
+<p>Analyzes the execution context and stage result to extract
+patterns that characterize this type of detection.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>context</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="rotalabs_cascade.core.context.ExecutionContext" href="../core/#rotalabs_cascade.core.context.ExecutionContext">ExecutionContext</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The execution context containing input data.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>stage</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Name of the stage that detected/flagged the input.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>result</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="rotalabs_cascade.core.context.StageResult" href="../core/#rotalabs_cascade.core.context.StageResult">StageResult</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The stage result containing detection details.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern" href="#rotalabs_cascade.learning.pattern_extractor.StageFailurePattern">StageFailurePattern</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The extracted or updated pattern, or None if no pattern found.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_migration_candidates" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_migration_candidates</span><span class="p">(</span><span class="n">min_confidence</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">min_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">StageFailurePattern</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_migration_candidates" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get patterns that are candidates for migration to cheaper stages.</p>
+<p>Returns patterns that have high confidence and sufficient samples
+to warrant consideration for migration.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>min_confidence</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Minimum confidence threshold.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.8</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>min_samples</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Minimum number of samples.</p>
+              </div>
+            </td>
+            <td>
+                  <code>10</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern" href="#rotalabs_cascade.learning.pattern_extractor.StageFailurePattern">StageFailurePattern</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of patterns suitable for migration.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_insights" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_insights</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">PatternLearningInsight</span></code>
+
+<a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_insights" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get aggregated learning insights.</p>
+<p>Computes overall statistics and recommendations from
+all learned patterns.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="rotalabs_cascade.learning.pattern_extractor.PatternLearningInsight">PatternLearningInsight</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>PatternLearningInsight with analysis and recommendations.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.pattern_extractor.PatternExtractor.clear_patterns" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">clear_patterns</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+<a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.clear_patterns" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Clear all learned patterns.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_pattern" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_pattern</span><span class="p">(</span><span class="n">pattern_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">StageFailurePattern</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_pattern" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get a specific pattern by ID.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>pattern_id</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The pattern identifier.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern" href="#rotalabs_cascade.learning.pattern_extractor.StageFailurePattern">StageFailurePattern</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The pattern if found, None otherwise.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_patterns_by_stage" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_patterns_by_stage</span><span class="p">(</span><span class="n">stage</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">StageFailurePattern</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_patterns_by_stage" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get all patterns for a specific stage.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>stage</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The stage name.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern" href="#rotalabs_cascade.learning.pattern_extractor.StageFailurePattern">StageFailurePattern</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of patterns for the stage.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_patterns_by_type" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_patterns_by_type</span><span class="p">(</span><span class="n">pattern_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">StageFailurePattern</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.get_patterns_by_type" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get all patterns of a specific type.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>pattern_type</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The pattern type.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern" href="#rotalabs_cascade.learning.pattern_extractor.StageFailurePattern">StageFailurePattern</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of patterns of the specified type.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.pattern_extractor.PatternExtractor.export_patterns" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">export_patterns</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span></code>
+
+<a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.export_patterns" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Export all patterns as dictionaries.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of pattern dictionaries.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.pattern_extractor.PatternExtractor.import_patterns" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">import_patterns</span><span class="p">(</span><span class="n">patterns</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
+
+<a href="#rotalabs_cascade.learning.pattern_extractor.PatternExtractor.import_patterns" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Import patterns from dictionaries.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>patterns</code>
+            </td>
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of pattern dictionaries.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of patterns imported.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="stagefailurepattern">StageFailurePattern<a class="headerlink" href="#stagefailurepattern" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<a id="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern"></a>
+    <div class="doc doc-contents first">
+
+
+        <p>Represents a pattern extracted from stage failures.</p>
+<p>Patterns capture recurring characteristics in data that cause specific
+stages to trigger. By identifying these patterns, we can potentially
+move detection to cheaper, earlier stages.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.id">id</span></code></td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Unique identifier for this pattern.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.stage">stage</span></code></td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Name of the cascade stage where this pattern was detected.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.pattern_type">pattern_type</span></code></td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Type of pattern (threshold, correlation, reasoning,
+temporal, behavioral).</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.features">features</span></code></td>
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Extracted feature values that define this pattern.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.confidence">confidence</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Confidence score (0-1) in this pattern's reliability.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.sample_count">sample_count</span></code></td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of samples that matched this pattern.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.first_seen">first_seen</span></code></td>
+            <td>
+                  <code><span title="datetime.datetime">datetime</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timestamp when pattern was first observed.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.last_seen">last_seen</span></code></td>
+            <td>
+                  <code><span title="datetime.datetime">datetime</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timestamp when pattern was last observed.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.metadata">metadata</span></code></td>
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Additional pattern metadata.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.to_dict" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">to_dict</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.to_dict" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Convert pattern to dictionary representation.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.from_dict" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">StageFailurePattern</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+<a href="#rotalabs_cascade.learning.pattern_extractor.StageFailurePattern.from_dict" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Create pattern from dictionary representation.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="rulegenerator">RuleGenerator<a class="headerlink" href="#rulegenerator" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<a id="rotalabs_cascade.learning.rule_generator.RuleGenerator"></a>
+    <div class="doc doc-contents first">
+
+
+        <p>Generates routing rules from learned patterns.</p>
+<p>This class analyzes patterns extracted from execution history and generates
+appropriate routing rules. It supports multiple generation strategies based
+on pattern type and can optionally use an LLM for complex rule generation.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.rule_generator.RuleGenerator.llm_client">llm_client</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional LLM client for generating complex rules.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.rule_generator.RuleGenerator.min_confidence">min_confidence</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Minimum confidence threshold for generating rules.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.rule_generator.RuleGenerator.min_coverage">min_coverage</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Minimum estimated coverage for generating rules.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>generator = RuleGenerator(min_confidence=0.7)
+pattern = StageFailurePattern(...)
+rule = generator.generate_from_pattern(pattern)
+if rule:
+...     yaml_output = generator.to_yaml([rule])</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.rule_generator.RuleGenerator.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">llm_client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">min_confidence</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">min_coverage</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+<a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator.__init__" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize the rule generator.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>llm_client</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional LLM client for generating complex rules.
+Should have a method like <code>generate(prompt: str) -&gt; str</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>min_confidence</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Minimum confidence threshold for rule generation.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.5</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>min_coverage</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Minimum estimated coverage threshold.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.01</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.rule_generator.RuleGenerator.generate_from_pattern" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">generate_from_pattern</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="n">StageFailurePattern</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">GeneratedRule</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator.generate_from_pattern" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Generate a routing rule from a pattern.</p>
+<p>This method selects the appropriate generation strategy based on
+the pattern type and attempts to create a rule.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>pattern</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern" href="#rotalabs_cascade.learning.pattern_extractor.StageFailurePattern">StageFailurePattern</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The pattern to generate a rule from.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.rule_generator.GeneratedRule" href="#rotalabs_cascade.learning.rule_generator.GeneratedRule">GeneratedRule</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A GeneratedRule if successful, None if the pattern cannot be</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.rule_generator.GeneratedRule" href="#rotalabs_cascade.learning.rule_generator.GeneratedRule">GeneratedRule</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>converted to a rule or doesn't meet thresholds.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.rule_generator.RuleGenerator.to_routing_rule" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">to_routing_rule</span><span class="p">(</span><span class="n">generated</span><span class="p">:</span> <span class="n">GeneratedRule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RoutingRule</span></code>
+
+<a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator.to_routing_rule" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Convert a GeneratedRule to cascade's RoutingRule format.</p>
+<p>This method transforms the generated rule into the native
+RoutingRule format used by the cascade engine.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>generated</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.rule_generator.GeneratedRule" href="#rotalabs_cascade.learning.rule_generator.GeneratedRule">GeneratedRule</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The GeneratedRule to convert.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="rotalabs_cascade.core.config.RoutingRule" href="../core/#rotalabs_cascade.core.config.RoutingRule">RoutingRule</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A RoutingRule ready for use in cascade configuration.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.rule_generator.RuleGenerator.to_yaml" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">to_yaml</span><span class="p">(</span><span class="n">rules</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeneratedRule</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
+
+<a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator.to_yaml" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Export generated rules as YAML.</p>
+<p>This method exports rules in a human-readable YAML format
+suitable for review and manual editing.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rules</code>
+            </td>
+            <td>
+                  <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.rule_generator.GeneratedRule" href="#rotalabs_cascade.learning.rule_generator.GeneratedRule">GeneratedRule</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of GeneratedRule objects to export.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>YAML string representation of the rules.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ImportError">ImportError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If PyYAML is not installed.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.rule_generator.RuleGenerator.generate_batch" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">generate_batch</span><span class="p">(</span><span class="n">patterns</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">StageFailurePattern</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">GeneratedRule</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.rule_generator.RuleGenerator.generate_batch" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Generate rules from a batch of patterns.</p>
+<p>Convenience method for processing multiple patterns at once.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>patterns</code>
+            </td>
+            <td>
+                  <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.pattern_extractor.StageFailurePattern" href="#rotalabs_cascade.learning.pattern_extractor.StageFailurePattern">StageFailurePattern</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of patterns to generate rules from.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.rule_generator.GeneratedRule" href="#rotalabs_cascade.learning.rule_generator.GeneratedRule">GeneratedRule</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of successfully generated rules.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="generatedrule">GeneratedRule<a class="headerlink" href="#generatedrule" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<a id="rotalabs_cascade.learning.rule_generator.GeneratedRule"></a>
+    <div class="doc doc-contents first">
+
+
+        <p>A routing rule generated from a learned pattern.</p>
+<p>This dataclass represents a machine-generated rule that can be proposed
+for human review before being deployed.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.rule_generator.GeneratedRule.rule_id">rule_id</span></code></td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Unique identifier for this rule.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.rule_generator.GeneratedRule.name">name</span></code></td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Human-readable rule name.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.rule_generator.GeneratedRule.description">description</span></code></td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Detailed description of what this rule does.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.rule_generator.GeneratedRule.template">template</span></code></td>
+            <td>
+                  <code><span title="rotalabs_cascade.learning.rule_generator.RuleTemplate">RuleTemplate</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The template type used to generate this rule.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.rule_generator.GeneratedRule.conditions">conditions</span></code></td>
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of condition specifications.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.rule_generator.GeneratedRule.action">action</span></code></td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The action to take when rule matches (APPROVE, REJECT, ESCALATE, FLAG).</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.rule_generator.GeneratedRule.target_stage">target_stage</span></code></td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The stage to route to when the rule matches.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.rule_generator.GeneratedRule.source_pattern_id">source_pattern_id</span></code></td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ID of the pattern this rule was generated from.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.rule_generator.GeneratedRule.confidence">confidence</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Confidence score from the source pattern (0.0 to 1.0).</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.rule_generator.GeneratedRule.estimated_coverage">estimated_coverage</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Estimated percentage of cases this rule would handle.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.rule_generator.GeneratedRule.created_at">created_at</span></code></td>
+            <td>
+                  <code><span title="datetime.datetime">datetime</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timestamp when this rule was generated.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.rule_generator.GeneratedRule.to_dict" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">to_dict</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.rule_generator.GeneratedRule.to_dict" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Convert rule to dictionary representation.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionary representation of the generated rule.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.rule_generator.GeneratedRule.from_dict" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;GeneratedRule&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+<a href="#rotalabs_cascade.learning.rule_generator.GeneratedRule.from_dict" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Create rule from dictionary representation.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>data</code>
+            </td>
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionary containing rule data.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>&#39;GeneratedRule&#39;</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>GeneratedRule instance.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="costanalyzer">CostAnalyzer<a class="headerlink" href="#costanalyzer" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<a id="rotalabs_cascade.learning.cost_analyzer.CostAnalyzer"></a>
+    <div class="doc doc-contents first">
+
+
+        <p>Analyzes migration costs and ROI for cascade pattern optimization.</p>
+<p>The CostAnalyzer evaluates whether patterns should be migrated between
+processing stages based on cost efficiency, detection rates, and risk
+factors. It uses configurable stage costs to model the tradeoffs between
+earlier (cheaper but less sophisticated) and later (expensive but more
+capable) stages.</p>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>analyzer = CostAnalyzer()</p>
+<h3 id="rotalabs_cascade.learning.cost_analyzer.CostAnalyzer--calculate-roi-for-a-single-pattern">Calculate ROI for a single pattern<a class="headerlink" href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer--calculate-roi-for-a-single-pattern" title="Permanent link">&para;</a></h3>
+<p>roi = analyzer.calculate_migration_roi(pattern, "RULES", volume=10000)
+print(f"Recommendation: {roi.recommendation}")
+print(f"Savings: {roi.cost_reduction_absolute:.2f} per period")</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.stage_costs">stage_costs</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionary mapping stage names to their cost configurations.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">stage_costs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">StageCost</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+<a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.__init__" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize the cost analyzer.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>stage_costs</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="rotalabs_cascade.learning.cost_analyzer.StageCost">StageCost</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional custom stage cost configuration.
+If not provided, uses DEFAULT_STAGE_COSTS.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.set_stage_cost" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">set_stage_cost</span><span class="p">(</span><span class="n">stage</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">cost</span><span class="p">:</span> <span class="n">StageCost</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+<a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.set_stage_cost" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Set or update the cost configuration for a stage.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>stage</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Stage identifier name.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>cost</code>
+            </td>
+            <td>
+                  <code><span title="rotalabs_cascade.learning.cost_analyzer.StageCost">StageCost</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Cost configuration for the stage.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.calculate_migration_roi" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">calculate_migration_roi</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="s1">&#39;StageFailurePattern&#39;</span><span class="p">,</span> <span class="n">target_stage</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">volume</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">migration_effort</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MigrationROI</span></code>
+
+<a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.calculate_migration_roi" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Calculate ROI for migrating a pattern to a different stage.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>pattern</code>
+            </td>
+            <td>
+                  <code>&#39;StageFailurePattern&#39;</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The stage failure pattern to analyze.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>target_stage</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Stage to potentially migrate the pattern to.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>volume</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Estimated number of items per period.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>migration_effort</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="float">float</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Cost units for migration effort (default: 100.0).</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.cost_analyzer.MigrationROI" href="#rotalabs_cascade.learning.cost_analyzer.MigrationROI">MigrationROI</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>MigrationROI with cost analysis and recommendation.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If source or target stage is not configured.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.analyze_all_candidates" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">analyze_all_candidates</span><span class="p">(</span><span class="n">candidates</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="s1">&#39;StageFailurePattern&#39;</span><span class="p">],</span> <span class="n">target_stage</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;RULES&#39;</span><span class="p">,</span> <span class="n">volume</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">MigrationROI</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.analyze_all_candidates" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Analyze all candidate patterns for migration to a target stage.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>candidates</code>
+            </td>
+            <td>
+                  <code><span title="typing.List">List</span>[&#39;StageFailurePattern&#39;]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of stage failure patterns to analyze.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>target_stage</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Target stage for migration (default: RULES).</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;RULES&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>volume</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Estimated items per period for each pattern.</p>
+              </div>
+            </td>
+            <td>
+                  <code>1000</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.cost_analyzer.MigrationROI" href="#rotalabs_cascade.learning.cost_analyzer.MigrationROI">MigrationROI</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of MigrationROI objects for each candidate.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.get_total_potential_savings" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_total_potential_savings</span><span class="p">(</span><span class="n">roi_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">MigrationROI</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.get_total_potential_savings" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Calculate total potential savings from a list of ROI analyses.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>roi_list</code>
+            </td>
+            <td>
+                  <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.cost_analyzer.MigrationROI" href="#rotalabs_cascade.learning.cost_analyzer.MigrationROI">MigrationROI</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of MigrationROI objects to aggregate.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionary containing:
+- total_absolute_savings: Sum of all cost reductions.
+- total_volume: Sum of all estimated volumes.
+- average_reduction_percentage: Weighted average cost reduction.
+- migrate_count: Number of MIGRATE recommendations.
+- monitor_count: Number of MONITOR recommendations.
+- reject_count: Number of REJECT recommendations.
+- patterns_by_recommendation: Pattern IDs grouped by recommendation.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.rank_by_roi" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">rank_by_roi</span><span class="p">(</span><span class="n">roi_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">MigrationROI</span><span class="p">],</span> <span class="n">ascending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">MigrationROI</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.cost_analyzer.CostAnalyzer.rank_by_roi" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Rank migration candidates by ROI.</p>
+<p>Patterns are ranked primarily by cost reduction absolute value,
+with recommendation and false positive risk as secondary factors.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>roi_list</code>
+            </td>
+            <td>
+                  <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.cost_analyzer.MigrationROI" href="#rotalabs_cascade.learning.cost_analyzer.MigrationROI">MigrationROI</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of MigrationROI objects to rank.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ascending</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, rank from lowest to highest ROI.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.cost_analyzer.MigrationROI" href="#rotalabs_cascade.learning.cost_analyzer.MigrationROI">MigrationROI</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Sorted list of MigrationROI objects.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="migrationroi">MigrationROI<a class="headerlink" href="#migrationroi" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<a id="rotalabs_cascade.learning.cost_analyzer.MigrationROI"></a>
+    <div class="doc doc-contents first">
+
+
+        <p>ROI calculation for migrating a pattern to a different stage.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.cost_analyzer.MigrationROI.pattern_id">pattern_id</span></code></td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Unique identifier for the pattern being analyzed.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.cost_analyzer.MigrationROI.source_stage">source_stage</span></code></td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Current stage where pattern is being handled.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.cost_analyzer.MigrationROI.target_stage">target_stage</span></code></td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Proposed stage to migrate pattern to.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.cost_analyzer.MigrationROI.current_cost_per_item">current_cost_per_item</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Cost per item at current stage.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.cost_analyzer.MigrationROI.projected_cost_per_item">projected_cost_per_item</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Expected cost per item at target stage.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.cost_analyzer.MigrationROI.estimated_volume">estimated_volume</span></code></td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Expected items per period to process.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.cost_analyzer.MigrationROI.cost_reduction_absolute">cost_reduction_absolute</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Total cost savings per period.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.cost_analyzer.MigrationROI.cost_reduction_percentage">cost_reduction_percentage</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Percentage reduction in costs.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.cost_analyzer.MigrationROI.detection_rate_change">detection_rate_change</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Change in detection rate (positive = improvement).</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.cost_analyzer.MigrationROI.false_positive_risk">false_positive_risk</span></code></td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Risk of false positives at target stage (0.0-1.0).</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.cost_analyzer.MigrationROI.payback_items">payback_items</span></code></td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of items needed to break even on migration effort.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.cost_analyzer.MigrationROI.recommendation">recommendation</span></code></td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Migration recommendation (MIGRATE, MONITOR, REJECT).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.cost_analyzer.MigrationROI.__post_init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">__post_init__</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+<a href="#rotalabs_cascade.learning.cost_analyzer.MigrationROI.__post_init__" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Validate recommendation value.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="proposalmanager">ProposalManager<a class="headerlink" href="#proposalmanager" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<a id="rotalabs_cascade.learning.proposal.ProposalManager"></a>
+    <div class="doc doc-contents first">
+
+
+        <p>Manages the lifecycle of rule proposals through the approval workflow.</p>
+<p>This class provides methods for creating, reviewing, testing, and activating
+rule proposals. It supports optional file-based persistence for proposals.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.proposal.ProposalManager.storage_path">storage_path</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional path for persisting proposals to disk.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.proposal.ProposalManager._proposals">_proposals</span></code></td>
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.proposal.RuleProposal" href="#rotalabs_cascade.learning.proposal.RuleProposal">RuleProposal</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>In-memory dictionary of proposals keyed by proposal_id.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>manager = ProposalManager(storage_path=Path("./proposals"))
+proposal = manager.create_proposal(rule, roi)
+pending = manager.get_pending_proposals()
+manager.approve(proposal.proposal_id, "reviewer@example.com")</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.proposal.ProposalManager.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">storage_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+<a href="#rotalabs_cascade.learning.proposal.ProposalManager.__init__" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize the proposal manager.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>storage_path</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="pathlib.Path">Path</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional path for file-based persistence. If provided,
+proposals will be saved to and loaded from this directory.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.proposal.ProposalManager.create_proposal" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">create_proposal</span><span class="p">(</span><span class="n">rule</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">roi</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RuleProposal</span></code>
+
+<a href="#rotalabs_cascade.learning.proposal.ProposalManager.create_proposal" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Create a new rule proposal for review.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rule</code>
+            </td>
+            <td>
+                  <code><span title="typing.Any">Any</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The machine-generated rule to propose.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>roi</code>
+            </td>
+            <td>
+                  <code><span title="typing.Any">Any</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ROI analysis supporting this proposal.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.proposal.RuleProposal" href="#rotalabs_cascade.learning.proposal.RuleProposal">RuleProposal</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The created RuleProposal with PENDING_REVIEW status.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.proposal.ProposalManager.get_pending_proposals" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_pending_proposals</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">RuleProposal</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.proposal.ProposalManager.get_pending_proposals" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get all proposals pending review.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.proposal.RuleProposal" href="#rotalabs_cascade.learning.proposal.RuleProposal">RuleProposal</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of proposals with PENDING_REVIEW status, sorted by creation time.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.proposal.ProposalManager.approve" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">approve</span><span class="p">(</span><span class="n">proposal_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">reviewer</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">notes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RuleProposal</span></code>
+
+<a href="#rotalabs_cascade.learning.proposal.ProposalManager.approve" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Approve a pending proposal.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>proposal_id</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ID of the proposal to approve.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>reviewer</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Identifier of the person approving.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>notes</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional notes explaining the approval decision.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.proposal.RuleProposal" href="#rotalabs_cascade.learning.proposal.RuleProposal">RuleProposal</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The updated RuleProposal with APPROVED status.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="KeyError">KeyError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If proposal_id not found.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If proposal is not in PENDING_REVIEW status.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.proposal.ProposalManager.reject" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">reject</span><span class="p">(</span><span class="n">proposal_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">reviewer</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">notes</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RuleProposal</span></code>
+
+<a href="#rotalabs_cascade.learning.proposal.ProposalManager.reject" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Reject a pending proposal.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>proposal_id</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ID of the proposal to reject.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>reviewer</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Identifier of the person rejecting.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>notes</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Required notes explaining the rejection reason.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.proposal.RuleProposal" href="#rotalabs_cascade.learning.proposal.RuleProposal">RuleProposal</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The updated RuleProposal with REJECTED status.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="KeyError">KeyError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If proposal_id not found.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If proposal is not in PENDING_REVIEW status.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.proposal.ProposalManager.start_testing" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">start_testing</span><span class="p">(</span><span class="n">proposal_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RuleProposal</span></code>
+
+<a href="#rotalabs_cascade.learning.proposal.ProposalManager.start_testing" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Start A/B testing for an approved proposal.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>proposal_id</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ID of the proposal to begin testing.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.proposal.RuleProposal" href="#rotalabs_cascade.learning.proposal.RuleProposal">RuleProposal</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The updated RuleProposal with TESTING status.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="KeyError">KeyError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If proposal_id not found.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If proposal is not in APPROVED status.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.proposal.ProposalManager.record_test_results" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">record_test_results</span><span class="p">(</span><span class="n">proposal_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">RuleProposal</span></code>
+
+<a href="#rotalabs_cascade.learning.proposal.ProposalManager.record_test_results" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Record test results for a proposal in testing.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>proposal_id</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ID of the proposal being tested.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>results</code>
+            </td>
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionary of test results and metrics.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.proposal.RuleProposal" href="#rotalabs_cascade.learning.proposal.RuleProposal">RuleProposal</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The updated RuleProposal with recorded test results.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="KeyError">KeyError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If proposal_id not found.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If proposal is not in TESTING status.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.proposal.ProposalManager.activate" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">activate</span><span class="p">(</span><span class="n">proposal_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RuleProposal</span></code>
+
+<a href="#rotalabs_cascade.learning.proposal.ProposalManager.activate" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Activate a tested proposal for production use.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>proposal_id</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ID of the proposal to activate.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.proposal.RuleProposal" href="#rotalabs_cascade.learning.proposal.RuleProposal">RuleProposal</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The updated RuleProposal with ACTIVE status.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="KeyError">KeyError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If proposal_id not found.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If proposal is not in TESTING or APPROVED status.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.proposal.ProposalManager.deprecate" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">deprecate</span><span class="p">(</span><span class="n">proposal_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">reason</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RuleProposal</span></code>
+
+<a href="#rotalabs_cascade.learning.proposal.ProposalManager.deprecate" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Deprecate an active proposal.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>proposal_id</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ID of the proposal to deprecate.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>reason</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Reason for deprecation.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.proposal.RuleProposal" href="#rotalabs_cascade.learning.proposal.RuleProposal">RuleProposal</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The updated RuleProposal with DEPRECATED status.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="KeyError">KeyError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If proposal_id not found.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If proposal is not in ACTIVE status.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.proposal.ProposalManager.get_proposal" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_proposal</span><span class="p">(</span><span class="n">proposal_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RuleProposal</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.proposal.ProposalManager.get_proposal" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get a proposal by ID.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>proposal_id</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ID of the proposal to retrieve.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.proposal.RuleProposal" href="#rotalabs_cascade.learning.proposal.RuleProposal">RuleProposal</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The RuleProposal if found, None otherwise.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.proposal.ProposalManager.get_active_rules" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_active_rules</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">RuleProposal</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.proposal.ProposalManager.get_active_rules" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get all active rule proposals.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="rotalabs_cascade.learning.proposal.RuleProposal" href="#rotalabs_cascade.learning.proposal.RuleProposal">RuleProposal</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of proposals with ACTIVE status, sorted by activation time.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.proposal.ProposalManager.export_proposals" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">export_proposals</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+<a href="#rotalabs_cascade.learning.proposal.ProposalManager.export_proposals" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Export all proposals to a JSON file.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>path</code>
+            </td>
+            <td>
+                  <code><span title="pathlib.Path">Path</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to write the JSON file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.proposal.ProposalManager.import_proposals" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">import_proposals</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+<a href="#rotalabs_cascade.learning.proposal.ProposalManager.import_proposals" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Import proposals from a JSON file.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>path</code>
+            </td>
+            <td>
+                  <code><span title="pathlib.Path">Path</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the JSON file to import.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="FileNotFoundError">FileNotFoundError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the file does not exist.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="json.JSONDecodeError">JSONDecodeError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the file is not valid JSON.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="ruleproposal">RuleProposal<a class="headerlink" href="#ruleproposal" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<a id="rotalabs_cascade.learning.proposal.RuleProposal"></a>
+    <div class="doc doc-contents first">
+
+
+        <p>A proposal for a machine-generated routing rule.</p>
+<p>This dataclass captures all metadata about a rule proposal throughout its
+lifecycle, from initial creation through review, testing, and activation.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.proposal.RuleProposal.proposal_id">proposal_id</span></code></td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Unique identifier for this proposal.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.proposal.RuleProposal.generated_rule">generated_rule</span></code></td>
+            <td>
+                  <code><span title="typing.Any">Any</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The machine-generated rule being proposed.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.proposal.RuleProposal.roi_analysis">roi_analysis</span></code></td>
+            <td>
+                  <code><span title="typing.Any">Any</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ROI analysis supporting this proposal.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.proposal.RuleProposal.status">status</span></code></td>
+            <td>
+                  <code><span title="rotalabs_cascade.learning.proposal.ProposalStatus">ProposalStatus</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Current status in the approval workflow.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.proposal.RuleProposal.created_at">created_at</span></code></td>
+            <td>
+                  <code><span title="datetime.datetime">datetime</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timestamp when proposal was created.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.proposal.RuleProposal.reviewed_at">reviewed_at</span></code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="datetime.datetime">datetime</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timestamp when proposal was reviewed (approved/rejected).</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.proposal.RuleProposal.reviewer">reviewer</span></code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Identifier of the person who reviewed the proposal.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.proposal.RuleProposal.review_notes">review_notes</span></code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Notes from the reviewer explaining their decision.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.proposal.RuleProposal.test_results">test_results</span></code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Results from A/B testing phase.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="rotalabs_cascade.learning.proposal.RuleProposal.activated_at">activated_at</span></code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="datetime.datetime">datetime</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timestamp when proposal was activated in production.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.proposal.RuleProposal.to_dict" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">to_dict</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span></code>
+
+<a href="#rotalabs_cascade.learning.proposal.RuleProposal.to_dict" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Convert proposal to dictionary for serialization.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionary representation of the proposal.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="rotalabs_cascade.learning.proposal.RuleProposal.from_dict" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;RuleProposal&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+<a href="#rotalabs_cascade.learning.proposal.RuleProposal.from_dict" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Create proposal from dictionary.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>data</code>
+            </td>
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionary containing proposal data.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>&#39;RuleProposal&#39;</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>RuleProposal instance.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://rotalabs.ai"><img src="assets/logo-light-full.png" alt="Rotalabs" style="height: 30px; vertical-align: middle;"></a>
+&nbsp;&copy; 2025 Rotalabs
+
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/rotalabs/rotalabs-cascade" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://pypi.org/project/rotalabs-cascade/" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://rotalabs.ai" target="_blank" rel="noopener" title="rotalabs.ai" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
