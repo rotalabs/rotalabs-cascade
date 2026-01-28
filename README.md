@@ -16,24 +16,30 @@ Configuration-driven orchestration engine for multi-stage decision routing with 
 
 ### Use Cases
 
-- **Approval workflows**: Route requests through different approval chains based on risk scores
-- **Policy evaluation**: Apply policies in stages with conditional escalation
-- **Trust scoring**: Cascade through fast/medium/expensive checks based on confidence thresholds
-- **Resource allocation**: Dynamically route to different resource pools based on load and priority
-- **Content moderation**: Multi-stage filtering with early termination or escalation
+Works across **any domain** with the same cascade logic:
+
+| Domain | Use Case | Event Example |
+|--------|----------|---------------|
+| **Finance** | Fraud detection, transaction approval | Payments, transfers, withdrawals |
+| **Healthcare** | Claims processing, triage | Insurance claims, prescriptions |
+| **Content** | Moderation, spam detection | Posts, comments, uploads |
+| **Security** | Access control, threat detection | Logins, API calls, data transfers |
+| **Support** | Ticket routing, priority escalation | Customer tickets, complaints |
+| **HR** | Resume screening, application review | Job applications, candidates |
 
 ## Key Features
 
+- **Domain-agnostic** - Same cascade works for finance, healthcare, content, security, and more
+- **Event + Context pattern** - Structured input model that separates "what happened" from "circumstances"
 - **Configuration-driven** - Define cascades in YAML/JSON, no orchestration code needed
 - **Async-native execution** - Full async/await support with `asyncio.timeout`
 - **Dynamic routing** - Enable/disable stages, skip ahead, or terminate based on stage results
 - **Parallel execution** - Run independent stages concurrently with configurable parallelism
 - **Rich condition language** - 21 operators: comparison, logical, collection, pattern, statistical
 - **Plugin system** - Built-in cache, retry, metrics, and circuit breaker plugins
+- **APLS Learning** - Adaptive Pattern Learning System for cost optimization
 - **Zero-copy data passing** - Efficient context sharing across stages
 - **Hot-reload configuration** - Update pipeline definitions without restart
-- **Dependency resolution** - Automatic topological sort based on stage dependencies
-- **Comprehensive observability** - Timeline tracking, routing decisions, and stage metrics
 
 ## Installation
 
@@ -220,6 +226,125 @@ MEDIUM_CHECK:
   Result: pass
   Confidence: 0.85
   Time: 312.45ms
+```
+
+## Event + Context Pattern
+
+The cascade framework uses a **domain-agnostic Event + Context pattern** that works across any industry:
+
+### Universal Event
+
+The event represents "what happened" - works for any domain:
+
+```python
+from rotalabs_cascade import UniversalEvent, DomainType, EventWithContext, EventContext
+
+# Finance: A transaction
+event = UniversalEvent(
+    id="txn_123",
+    domain=DomainType.FINANCE,
+    event_type="transaction",
+    timestamp=datetime.now(),
+    primary_entity="user_alice",      # who initiated
+    secondary_entity="merchant_xyz",  # target/recipient
+    value=250.00,                     # amount
+    unit="USD",
+    domain_data={"card_type": "credit", "merchant_category": "retail"}
+)
+
+# Content: A social media post
+event = UniversalEvent(
+    id="post_456",
+    domain=DomainType.CONTENT_MODERATION,
+    event_type="post",
+    timestamp=datetime.now(),
+    primary_entity="user_bob",
+    secondary_entity="forum_tech",
+    value=0,                          # no monetary value
+    unit="post",
+    domain_data={"content": "Hello world", "has_media": False}
+)
+
+# Security: A login attempt
+event = UniversalEvent(
+    id="login_789",
+    domain=DomainType.CYBERSECURITY,
+    event_type="login",
+    timestamp=datetime.now(),
+    primary_entity="employee_carol",
+    secondary_entity="internal_database",
+    value=0.3,                        # risk score
+    unit="risk_score",
+    domain_data={"resource_type": "database", "requested_permissions": ["read"]}
+)
+```
+
+### Structured Context
+
+The context provides "circumstances" - session, device, location, and history:
+
+```python
+from rotalabs_cascade import (
+    EventContext, SessionContext, DeviceContext,
+    LocationContext, HistoricalContext
+)
+
+context = EventContext(
+    session=SessionContext(
+        ip_address="192.168.1.100",
+        is_authenticated=True,
+        auth_method="mfa"
+    ),
+    device=DeviceContext(
+        device_type="mobile",
+        is_trusted_device=True
+    ),
+    location=LocationContext(
+        country="US",
+        city="San Francisco",
+        vpn_detected=False
+    ),
+    historical=HistoricalContext(
+        account_age_days=730,
+        previous_events_count=500,
+        trust_score=0.92
+    )
+)
+```
+
+### Execute with Event + Context
+
+```python
+# Combine event and context
+event_with_context = EventWithContext(event=event, context=context)
+
+# Execute cascade - same logic works for ANY domain
+result = await engine.execute(event_with_context.to_flat_dict())
+```
+
+### Domain-Agnostic Routing Rules
+
+Routing rules use generic context fields that work across all domains:
+
+```yaml
+routing_rules:
+  # Works for finance, content, security, healthcare - any domain
+  - name: high_trust_approve
+    condition:
+      field: trust_score        # from context.historical
+      operator: ">="
+      value: 0.95
+    action:
+      type: terminate
+
+  - name: new_account_escalate
+    condition:
+      field: account_age_days   # from context.historical
+      operator: "<"
+      value: 30
+    action:
+      type: enable_stages
+      stages: ["DEEP_ANALYSIS"]
 ```
 
 ## Configuration Reference
@@ -480,6 +605,91 @@ for stage_name, metrics in stats.items():
 ```python
 # Clear all caches (result and execution plan caches)
 engine.clear_cache()
+```
+
+## APLS: Adaptive Pattern Learning System
+
+The learning module provides automated optimization of cascade routing by learning from execution patterns. It identifies costly processing paths and generates rules to move decisions to cheaper stages.
+
+### How It Works
+
+1. **Pattern Extraction**: Analyzes stage failures/successes to extract features
+2. **Rule Generation**: Creates routing rules from learned patterns
+3. **ROI Analysis**: Calculates cost reduction for migrating patterns to cheaper stages
+4. **Proposal Workflow**: Human-in-the-loop approval before deploying learned rules
+
+### Stage Cost Model
+
+| Stage | Relative Cost | Typical Use |
+|-------|---------------|-------------|
+| RULES | 1x (baseline) | Simple threshold checks |
+| STATISTICAL_ML | 5x | Feature-based ML models |
+| SINGLE_AI | 25x | Single LLM call |
+| POD | 100x | Multi-agent consensus |
+| ADVERSARIAL | 500x | Adversarial validation |
+
+### Basic Usage
+
+```python
+from rotalabs_cascade.learning import (
+    PatternExtractor,
+    RuleGenerator,
+    CostAnalyzer,
+    ProposalManager,
+)
+
+# Extract patterns from cascade execution failures
+extractor = PatternExtractor()
+
+# After each cascade execution
+for stage_name, result in execution_result["stage_results"].items():
+    if result.get("escalated"):
+        pattern = extractor.learn_from_failure(context, stage_name, result)
+
+# Get migration candidates (patterns that could move to cheaper stages)
+candidates = extractor.get_migration_candidates(min_confidence=0.8, min_samples=100)
+
+# Generate rules from patterns
+generator = RuleGenerator()
+rules = [generator.generate_from_pattern(p) for p in candidates]
+
+# Analyze ROI
+analyzer = CostAnalyzer()
+for rule, pattern in zip(rules, candidates):
+    roi = analyzer.calculate_migration_roi(pattern, target_stage="RULES", volume=10000)
+    print(f"Pattern {pattern.id}: {roi.cost_reduction_percentage:.1f}% savings")
+    print(f"  Recommendation: {roi.recommendation}")
+
+# Create proposals for human review
+manager = ProposalManager()
+for rule, pattern in zip(rules, candidates):
+    roi = analyzer.calculate_migration_roi(pattern, "RULES", 10000)
+    if roi.recommendation == "MIGRATE":
+        proposal = manager.create_proposal(rule, roi)
+        print(f"Created proposal {proposal.proposal_id} for review")
+
+# Approve and activate rules
+proposal = manager.approve(proposal_id, reviewer="admin@example.com")
+proposal = manager.activate(proposal_id)
+
+# Get active rules to add to cascade config
+active_rules = manager.get_active_rules()
+```
+
+### Pattern Types
+
+- **THRESHOLD**: Simple numeric comparisons (e.g., "amount > $10,000")
+- **CORRELATION**: Feature combinations (e.g., "new_user AND high_amount AND night_time")
+- **REASONING**: Complex patterns extracted from AI explanations
+- **TEMPORAL**: Time-based patterns (e.g., "weekend transactions")
+- **BEHAVIORAL**: Sequence/frequency patterns (e.g., "3 attempts in 1 hour")
+
+### Proposal Workflow States
+
+```
+PENDING_REVIEW → APPROVED → TESTING → ACTIVE → DEPRECATED
+                ↓
+              REJECTED
 ```
 
 ## Development

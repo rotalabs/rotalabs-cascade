@@ -2,10 +2,17 @@
 
 This module provides the execution context that tracks state, results, and
 metadata throughout the cascade execution lifecycle.
+
+Supports both:
+- Flat dictionary input: {"user_id": "123", "amount": 100}
+- EventWithContext input: EventWithContext(event=..., context=...)
 """
 
 import time
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from rotalabs_cascade.core.event import EventWithContext
 
 
 class StageResult:
@@ -83,6 +90,7 @@ class ExecutionContext:
 
     __slots__ = (
         "_data",
+        "_event_with_context",
         "_stage_results",
         "_errors",
         "_metadata",
@@ -97,13 +105,27 @@ class ExecutionContext:
         "_routing_decisions",
     )
 
-    def __init__(self, data: Dict[str, Any]):
+    def __init__(self, data: Union[Dict[str, Any], "EventWithContext"]):
         """Initialize execution context.
 
         Args:
-            data: Input data dictionary (stored as reference, not copied).
+            data: Input data - either a dictionary or EventWithContext object.
+                  If EventWithContext, it will be converted to flat dict for access.
+
+        Examples:
+            # Flat dictionary (backward compatible)
+            ctx = ExecutionContext({"user_id": "123", "amount": 100})
+
+            # EventWithContext (domain-agnostic)
+            ctx = ExecutionContext(EventWithContext(event=..., context=...))
         """
-        self._data = data  # Zero-copy reference
+        # Handle EventWithContext input
+        if hasattr(data, "to_flat_dict"):
+            self._data = data.to_flat_dict()
+            self._event_with_context = data
+        else:
+            self._data = data  # Zero-copy reference
+            self._event_with_context = None
         self._stage_results: List[StageResult] = []
         self._errors: List[str] = []
         self._metadata: Dict[str, Any] = {}
@@ -133,7 +155,11 @@ class ExecutionContext:
         return self._termination_flag
 
     def get(self, path: str, default: Any = None) -> Any:
-        """Get value from data using dot notation with caching.
+        """Get value from data or stage results using dot notation with caching.
+
+        Supports paths like:
+        - "user.profile.age" - looks up in input data
+        - "stages.FAST_CHECK.confidence" - looks up in stage results
 
         Args:
             path: Dot-separated path (e.g., "user.profile.age").
@@ -145,8 +171,8 @@ class ExecutionContext:
         Examples:
             >>> ctx.get("user.name")
             'John'
-            >>> ctx.get("user.settings.theme", "light")
-            'dark'
+            >>> ctx.get("stages.FAST_CHECK.confidence")
+            0.85
         """
         # Check cache first
         if path in self._cache:
@@ -154,6 +180,41 @@ class ExecutionContext:
 
         # Navigate path
         parts = path.split(".")
+
+        # Handle stage results path (stages.STAGE_NAME.field)
+        if parts[0] == "stages" and len(parts) >= 2:
+            stage_name = parts[1]
+            stage_result = self.get_stage_result(stage_name)
+            if stage_result is None:
+                return default
+
+            if len(parts) == 2:
+                # Return entire stage result as dict
+                value = stage_result.to_dict()
+            else:
+                # Navigate into stage result
+                field = parts[2]
+                if hasattr(stage_result, field):
+                    value = getattr(stage_result, field)
+                elif field in (stage_result.data or {}):
+                    value = stage_result.data[field]
+                else:
+                    return default
+
+                # Handle deeper paths in data
+                if len(parts) > 3 and isinstance(value, dict):
+                    for part in parts[3:]:
+                        if isinstance(value, dict):
+                            value = value.get(part)
+                            if value is None:
+                                return default
+                        else:
+                            return default
+
+            self._cache[path] = value
+            return value
+
+        # Navigate input data
         value = self._data
 
         for part in parts:
